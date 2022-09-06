@@ -1,22 +1,22 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 public class PhoneBook {
-    Map<String, List<Contact>> phonebook = new HashMap<>();
+    static Map<String, List<Contact>> phonebook = new HashMap<>();
 
     public void newGroup(String groupName) {
         phonebook.put(groupName, new ArrayList<>());
     }
 
-    public void phoneBookRecord(Contact contact, String... groupName) {
+    public static void phoneBookRecord(Contact contact, String... groupName) {
         for (String name : groupName) {
             phonebook.get(name).add(contact);
         }
     }
 
-    public Contact newContact(String contactName, String contactNumber) {
+    public static Contact newContact(String contactName, String contactNumber) {
         return new Contact(contactName, contactNumber);
     }
 
@@ -31,11 +31,11 @@ public class PhoneBook {
         return buildingBook.toString();
     }
 
-    public List<Contact> searchGroup(String searchedGroup) {
+    public static List<Contact> searchGroup(String searchedGroup) {
         return phonebook.get(searchedGroup);
     }
 
-    public Contact searchNumber(String searchedNumber) {
+    public static Contact searchNumber(String searchedNumber) {
         for (List<Contact> values : phonebook.values()) {
             for (Contact value : values) {
                 if (value.getNumber().equals(searchedNumber)) {
